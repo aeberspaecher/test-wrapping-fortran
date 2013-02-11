@@ -19,5 +19,5 @@ def configure(conf):
     conf.check_python_module("numpy")
 
 def build(bld):
-    bld(features="fc fshlib", source="src/fort.f90", target="fort")
+    bld(features="fc fcstlib", source="src/fort.f90", target="fort")
     bld(features="c cshlib pyext", source="src/fortwrap.pyx", target="fortwrap", use="fort")
