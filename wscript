@@ -17,6 +17,8 @@ def configure(conf):
     conf.load("cython")
     conf.check_python_headers()
     conf.check_python_module("numpy")
+    conf.env["FCFLAGS"] = ["-O2", "-fPIC"]
+    conf.env["CFLAGS"] = ["-O2", "-fPIC"]
 
 def build(bld):
     bld(features="fc fcstlib", source="src/fort.f90", target="fort")

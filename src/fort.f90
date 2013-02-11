@@ -1,4 +1,9 @@
+module myTypes
+    integer, parameter :: dp = kind(1.0d0)
+end module
+
 module test
+  use myTypes
   use iso_c_binding
   implicit none
 
@@ -8,17 +13,17 @@ module test
 contains
 
   function set(x) result(y)
-    double precision :: x(:)
-    double precision :: y(size(x))
+    real(dp) :: x(:)
+    complex(dp) :: y(size(x))
 
-    y = 2*x
+    y = (0.0d0, 2.0d0)*x
   end function set
 
   ! C interoperable routine
   subroutine c_set(n, x, y) bind(c)
     integer(c_int), intent(in) :: n
     real(c_double), intent(in) :: x(n)
-    real(c_double), intent(out) :: y(n)
+    complex(c_double_complex), intent(out) :: y(n)
 
     y = set(x)
   end subroutine c_set
