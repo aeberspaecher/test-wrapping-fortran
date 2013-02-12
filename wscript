@@ -17,9 +17,11 @@ def configure(conf):
     conf.load("cython")
     conf.check_python_headers()
     conf.check_python_module("numpy")
-    conf.env["FCFLAGS"] = ["-O2", "-fPIC"]
-    conf.env["CFLAGS"] = ["-O2", "-fPIC"]
+    conf.env["FCFLAGS"] = ["-g", "-fPIC"]
+    conf.env["CFLAGS"] = ["-g", "-fPIC"]
 
 def build(bld):
     bld(features="fc fcstlib", source="src/fort.f90", target="fort")
-    bld(features="c cshlib pyext", source="src/fortwrap.pyx", target="fortwrap", use="fort")
+    bld(features="c cshlib pyext", source="src/fortwrap.pyx", target="fortwrap", use="fort", lib="gfortran")
+    # FIXME: why do we have to link against libgfortran manually? This seems wrong.
+    bld(features="pyext", source="src/testwrap.py")
