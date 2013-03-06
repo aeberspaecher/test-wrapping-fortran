@@ -21,7 +21,7 @@ def configure(conf):
     conf.env["CFLAGS"] = ["-g", "-fPIC"]
 
 def build(bld):
-    bld(features="fc fcstlib", source="src/fort.f90", target="fort")
+    bld(features="fc fcstlib", source="src/fort.f90 src/c-fort.f90", target="fort")
     bld(features="c cshlib pyext", source="src/fortwrap.pyx", target="fortwrap", use="fort", lib="gfortran")
     # FIXME: why do we have to link against libgfortran manually? This seems wrong.
     bld(features="pyext", source="src/testwrap.py")

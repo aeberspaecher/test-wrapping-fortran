@@ -5,11 +5,9 @@ end module myTypes
 
 module test
   use myTypes
-  use iso_c_binding
   implicit none
 
-  private
-  public c_set
+  public
 
 contains
 
@@ -33,22 +31,4 @@ contains
     endif
   end function set_array
 
-  ! C interoperable routine for 'set'
-  subroutine c_set(n, x, y) bind(c)
-    integer(c_int), intent(in) :: n
-    real(c_double), intent(in) :: x(n)
-    complex(c_double_complex), intent(out) :: y(n)
-
-    y = set(x)
-  end subroutine c_set
-
-  subroutine c_set_array(n, m, x, y) bind(c)
-    integer(c_int), intent(in) :: n, m
-    real(c_double), intent(in) :: x(n, m)
-    complex(c_double_complex), intent(out) :: y(n, m)
-!    write(*, *) shape(x)  ! debugging output
-    y = set_array(x)
-  end subroutine
-
 end module test
-

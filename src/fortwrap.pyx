@@ -3,8 +3,6 @@
 cimport numpy as np
 import numpy as np
 
-# TODO: what is Cython's 'mode'?
-
 # interfaces for external C code (here: Fortran exposed via iso_c_binding)
 cdef extern:
     void c_set(int *n, double *x, double complex *y)
