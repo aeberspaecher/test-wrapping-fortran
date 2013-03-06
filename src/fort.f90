@@ -27,7 +27,7 @@ contains
     y = x  ! copy input array to output array
     y = (0.0d0, 2.0d0)*y
     if (size(y, 2) >= 2) then
-      y(1,2) = 0.0d0
+       y(1,2) = 0.0d0
     endif
   end function set_array
 

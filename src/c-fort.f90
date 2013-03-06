@@ -24,6 +24,4 @@ contains
     y = set_array(x)
   end subroutine c_set_array
 
-
-
 end module c_test
