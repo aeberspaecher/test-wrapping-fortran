@@ -8,8 +8,4 @@ Build with::
   ./waf configure
   ./waf build
 
-Then, wither test ``testwrap.py`` in the build directory or install with
-
-::
-
-  ./waf install
+Then, you best test ``testwrap.py`` in the build directory.
